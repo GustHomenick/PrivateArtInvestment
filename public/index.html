@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>匿名艺术品投资平台 - 隐私艺术收藏投资</title>
+    <title>Private Art Investment Platform - FHE Encrypted Art Investment</title>
     <style>
         * {
             margin: 0;
@@ -13,9 +13,9 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
-            color: #333;
+            color: #e0e0e0;
         }
 
         .container {
@@ -49,15 +49,16 @@
         }
 
         .card {
-            background: white;
+            background: linear-gradient(145deg, #1e2a3a, #253447);
+            border: 1px solid rgba(83, 217, 217, 0.2);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             backdrop-filter: blur(10px);
         }
 
         .card h3 {
-            color: #5a67d8;
+            color: #53d9d9;
             margin-bottom: 20px;
             font-size: 1.5em;
             display: flex;
@@ -73,26 +74,29 @@
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
-            color: #4a5568;
+            color: #a0d8d8;
         }
 
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e2e8f0;
+            background: rgba(15, 52, 96, 0.4);
+            border: 2px solid rgba(83, 217, 217, 0.3);
             border-radius: 10px;
             font-size: 16px;
+            color: #e0e0e0;
             transition: border-color 0.3s;
         }
 
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             outline: none;
-            border-color: #5a67d8;
+            border-color: #53d9d9;
+            background: rgba(15, 52, 96, 0.6);
         }
 
         .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #53d9d9 0%, #00bfa5 100%);
+            color: #0f1419;
             border: none;
             padding: 12px 25px;
             border-radius: 10px;
@@ -105,7 +109,8 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(83, 217, 217, 0.4);
+            background: linear-gradient(135deg, #6ee7e7 0%, #00d4b8 100%);
         }
 
         .btn:disabled {
@@ -123,21 +128,21 @@
         }
 
         .status.success {
-            background: #c6f6d5;
-            color: #22543d;
-            border: 2px solid #9ae6b4;
+            background: rgba(0, 191, 165, 0.2);
+            color: #6ee7e7;
+            border: 2px solid #00bfa5;
         }
 
         .status.error {
-            background: #fed7d7;
-            color: #742a2a;
-            border: 2px solid #fc8181;
+            background: rgba(255, 82, 82, 0.2);
+            color: #ff8a8a;
+            border: 2px solid #ff5252;
         }
 
         .status.info {
-            background: #bee3f8;
-            color: #2a4365;
-            border: 2px solid #63b3ed;
+            background: rgba(83, 217, 217, 0.2);
+            color: #a0d8d8;
+            border: 2px solid #53d9d9;
         }
 
         .artwork-gallery {
@@ -153,25 +158,28 @@
         }
 
         .artwork-card {
-            background: white;
+            background: linear-gradient(145deg, #1a2332, #212d3f);
+            border: 1px solid rgba(83, 217, 217, 0.2);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .artwork-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(83, 217, 217, 0.3);
+            border-color: rgba(83, 217, 217, 0.5);
         }
 
         .artwork-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(45deg, #f0f2f5, #e2e8f0);
+            background: linear-gradient(45deg, #0f3460, #16213e);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #718096;
+            color: #53d9d9;
             font-size: 3em;
         }
 
@@ -183,11 +191,11 @@
             font-size: 1.3em;
             font-weight: bold;
             margin-bottom: 5px;
-            color: #2d3748;
+            color: #e0e0e0;
         }
 
         .artwork-artist {
-            color: #718096;
+            color: #a0d8d8;
             margin-bottom: 15px;
         }
 
@@ -204,27 +212,29 @@
 
         .stat-value {
             font-weight: bold;
-            color: #5a67d8;
+            color: #53d9d9;
         }
 
         .stat-label {
-            color: #718096;
+            color: #8aa4a4;
         }
 
         .invest-btn {
             width: 100%;
             padding: 10px;
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-            color: white;
+            background: linear-gradient(135deg, #00bfa5 0%, #00897b 100%);
+            color: #ffffff;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .invest-btn:hover {
             transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 191, 165, 0.3);
+            background: linear-gradient(135deg, #00d4b8 0%, #009688 100%);
         }
 
         .tabs {
@@ -236,8 +246,9 @@
             flex: 1;
             padding: 12px;
             text-align: center;
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
+            background: rgba(15, 52, 96, 0.3);
+            border: 1px solid rgba(83, 217, 217, 0.2);
+            color: #a0d8d8;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -251,8 +262,9 @@
         }
 
         .tab.active {
-            background: #5a67d8;
-            color: white;
+            background: linear-gradient(135deg, #53d9d9 0%, #00bfa5 100%);
+            color: #0f1419;
+            border-color: #53d9d9;
         }
 
         .tab-content {
@@ -299,6 +311,16 @@
             background: rgba(72, 187, 120, 0.8);
         }
 
+        .privacy-badge {
+            background: rgba(83, 217, 217, 0.15);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.85em;
+            color: #a0d8d8;
+            border: 1px solid rgba(83, 217, 217, 0.3);
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -319,132 +341,132 @@
     </style>
 </head>
 <body>
-    <div class="connection-status" id="connectionStatus">未连接</div>
+    <div class="connection-status" id="connectionStatus">Not Connected</div>
 
     <div class="container">
         <div class="header">
-            <h1>🎨 匿名艺术品投资平台</h1>
-            <p>隐私保护的艺术收藏品投资，基于FHE同态加密技术</p>
+            <h1>🎨 Private Art Investment Platform</h1>
+            <p>Privacy-Protected Art Collection Investment Using FHE Encryption Technology</p>
             <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-top: 20px; font-size: 0.9em;">
-                <strong>🔐 FHE隐私保护特性：</strong>
-                <br>• 投资金额完全加密存储
-                <br>• 持股数量隐私保护
-                <br>• 投资组合数据加密计算
-                <br>• 同态加密确保数据永不泄露
+                <strong>🔐 FHE Privacy Features:</strong>
+                <br>• Investment amounts fully encrypted
+                <br>• Share quantities privacy protected
+                <br>• Portfolio data encrypted computation
+                <br>• Homomorphic encryption ensures data never leaks
             </div>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number" id="totalArtworks">0</div>
-                <div>艺术品总数</div>
+                <div>Total Artworks</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="totalInvestors">0</div>
-                <div>投资者总数</div>
+                <div>Total Investors</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="userPortfolio">0</div>
-                <div>我的投资组合</div>
+                <div>My Portfolio</div>
             </div>
         </div>
 
         <div class="main-content">
             <div class="card">
-                <h3>👤 投资者注册</h3>
+                <h3>👤 Investor Registration</h3>
 
                 <div class="tabs">
-                    <div class="tab active" onclick="showTab('register')">注册投资者</div>
-                    <div class="tab" onclick="showTab('invest')">私密投资</div>
+                    <div class="tab active" onclick="showTab('register')">Register Investor</div>
+                    <div class="tab" onclick="showTab('invest')">Private Investment</div>
                 </div>
 
                 <div class="tab-content active" id="register">
                     <div class="form-group">
-                        <button class="btn" onclick="registerInvestor()">注册为投资者</button>
+                        <button class="btn" onclick="registerInvestor()">Register as Investor</button>
                     </div>
                     <div id="registerStatus"></div>
                 </div>
 
                 <div class="tab-content" id="invest">
-                    <div style="background: #e6f3ff; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85em; color: #2c5aa0;">
-                        <strong>🔐 隐私保护投资</strong><br>
-                        您的投资金额和持股数量将通过FHE技术完全加密，确保投资隐私。
+                    <div class="privacy-badge">
+                        <strong>🔐 Privacy Protected Investment</strong><br>
+                        Your investment amount and share quantities will be fully encrypted using FHE technology, ensuring investment privacy.
                     </div>
                     <div class="form-group">
-                        <label>选择艺术品:</label>
+                        <label>Select Artwork:</label>
                         <select id="artworkSelect">
-                            <option value="">选择要投资的艺术品...</option>
+                            <option value="">Choose artwork to invest in...</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>投资份额 🔐:</label>
-                        <input type="number" id="shareAmount" placeholder="输入要购买的份额数量（将被加密）" min="1">
+                        <label>Investment Shares 🔐:</label>
+                        <input type="number" id="shareAmount" placeholder="Enter number of shares to purchase (will be encrypted)" min="1">
                     </div>
                     <div class="form-group">
-                        <label>投资金额 (ETH) 🔐:</label>
-                        <input type="text" id="investmentAmount" placeholder="将自动计算（加密存储）" readonly>
+                        <label>Investment Amount (ETH) 🔐:</label>
+                        <input type="text" id="investmentAmount" placeholder="Will be calculated automatically (encrypted storage)" readonly>
                     </div>
                     <div class="form-group">
-                        <button class="btn" onclick="makeInvestment()">🔐 进行私密投资</button>
+                        <button class="btn" onclick="makeInvestment()">🔐 Make Private Investment</button>
                     </div>
                     <div id="investStatus"></div>
                 </div>
             </div>
 
             <div class="card">
-                <h3>🎭 艺术品管理</h3>
+                <h3>🎭 Artwork Management</h3>
 
                 <div class="form-group">
-                    <label>艺术品名称:</label>
-                    <input type="text" id="artworkName" placeholder="输入艺术品名称">
+                    <label>Artwork Name:</label>
+                    <input type="text" id="artworkName" placeholder="Enter artwork name">
                 </div>
                 <div class="form-group">
-                    <label>艺术家:</label>
-                    <input type="text" id="artistName" placeholder="输入艺术家名称">
+                    <label>Artist:</label>
+                    <input type="text" id="artistName" placeholder="Enter artist name">
                 </div>
                 <div class="form-group">
-                    <label>IPFS哈希:</label>
-                    <input type="text" id="ipfsHash" placeholder="输入艺术品IPFS哈希">
+                    <label>IPFS Hash:</label>
+                    <input type="text" id="ipfsHash" placeholder="Enter artwork IPFS hash">
                 </div>
                 <div class="form-group">
-                    <label>总价值 (ETH):</label>
+                    <label>Total Value (ETH):</label>
                     <input type="number" id="totalValue" placeholder="0.0" step="0.001">
                 </div>
                 <div class="form-group">
-                    <label>每股价格 (ETH):</label>
+                    <label>Share Price (ETH):</label>
                     <input type="number" id="sharePrice" placeholder="0.0" step="0.001">
                 </div>
                 <div class="form-group">
-                    <label>总股数:</label>
+                    <label>Total Shares:</label>
                     <input type="number" id="totalShares" placeholder="100" min="1">
                 </div>
                 <div class="form-group">
-                    <button class="btn" onclick="listArtwork()">上架艺术品</button>
+                    <button class="btn" onclick="listArtwork()">List Artwork</button>
                 </div>
                 <div id="listingStatus"></div>
             </div>
         </div>
 
         <div class="card artwork-gallery">
-            <h3>🎨 艺术品画廊</h3>
+            <h3>🎨 Artwork Gallery</h3>
             <div class="artworks-grid" id="artworksGrid">
                 <div class="artwork-card">
                     <div class="artwork-image">🎨</div>
                     <div class="artwork-info">
-                        <div class="artwork-title">暂无艺术品</div>
-                        <div class="artwork-artist">请先上架艺术品</div>
+                        <div class="artwork-title">No Artworks Yet</div>
+                        <div class="artwork-artist">Please list artworks first</div>
                         <div class="artwork-stats">
                             <div class="stat">
                                 <div class="stat-value">-</div>
-                                <div class="stat-label">总价值</div>
+                                <div class="stat-label">Total Value</div>
                             </div>
                             <div class="stat">
                                 <div class="stat-value">-</div>
-                                <div class="stat-label">可用股数</div>
+                                <div class="stat-label">Available Shares</div>
                             </div>
                             <div class="stat">
                                 <div class="stat-value">-</div>
-                                <div class="stat-label">投资人数</div>
+                                <div class="stat-label">Investors</div>
                             </div>
                         </div>
                     </div>
@@ -453,14 +475,15 @@
         </div>
     </div>
 
-    <script src="https://cdn.ethers.io/lib/ethers-6.7.1.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
     <script>
         let provider;
         let signer;
         let contract;
         let userAddress;
 
-        const CONTRACT_ADDRESS = "0xa0eE56B7697846877d0E90FA654377dcDD68Aaa8"; // 替换为实际合约地址
+        // Replace with actual deployed contract address
+        const CONTRACT_ADDRESS = "0xa0eE56B7697846877d0E90FA654377dcDD68Aaa8";
         const CONTRACT_ABI = [
             "function registerInvestor() external",
             "function listArtwork(string memory _name, string memory _artist, string memory _ipfsHash, uint256 _totalValue, uint256 _sharePrice, uint256 _totalShares) external",
@@ -490,21 +513,21 @@
                     await loadStats();
                     await loadArtworks();
                 } catch (error) {
-                    console.error("连接钱包失败:", error);
-                    showStatus('registerStatus', `连接失败: ${error.message}`, 'error');
+                    console.error("Wallet connection failed:", error);
+                    showStatus('registerStatus', `Connection failed: ${error.message}`, 'error');
                 }
             } else {
-                showStatus('registerStatus', '请安装MetaMask钱包', 'error');
+                showStatus('registerStatus', 'Please install MetaMask wallet', 'error');
             }
         }
 
         function updateConnectionStatus(connected) {
             const statusElement = document.getElementById('connectionStatus');
             if (connected) {
-                statusElement.textContent = `已连接: ${userAddress?.substring(0, 6)}...${userAddress?.substring(38)}`;
+                statusElement.textContent = `Connected: ${userAddress?.substring(0, 6)}...${userAddress?.substring(38)}`;
                 statusElement.className = 'connection-status connected';
             } else {
-                statusElement.textContent = '未连接';
+                statusElement.textContent = 'Not Connected';
                 statusElement.className = 'connection-status';
             }
         }
@@ -515,24 +538,24 @@
                     await initWeb3();
                 }
 
-                showStatus('registerStatus', '正在注册投资者...', 'info');
+                showStatus('registerStatus', 'Registering investor...', 'info');
 
                 const isRegistered = await contract.isInvestorRegistered(userAddress);
                 if (isRegistered) {
-                    showStatus('registerStatus', '您已经是注册投资者', 'info');
+                    showStatus('registerStatus', 'You are already a registered investor', 'info');
                     return;
                 }
 
                 const tx = await contract.registerInvestor();
-                showStatus('registerStatus', `交易已提交: ${tx.hash}`, 'info');
+                showStatus('registerStatus', `Transaction submitted: ${tx.hash}`, 'info');
 
                 await tx.wait();
-                showStatus('registerStatus', '投资者注册成功!', 'success');
+                showStatus('registerStatus', 'Investor registration successful!', 'success');
 
                 await loadStats();
             } catch (error) {
-                console.error('注册失败:', error);
-                showStatus('registerStatus', `注册失败: ${error.message}`, 'error');
+                console.error('Registration failed:', error);
+                showStatus('registerStatus', `Registration failed: ${error.message}`, 'error');
             }
         }
 
@@ -550,27 +573,27 @@
                 const totalShares = document.getElementById('totalShares').value;
 
                 if (!name || !artist || !ipfsHash || !totalValue || !sharePrice || !totalShares) {
-                    showStatus('listingStatus', '请填写所有字段', 'error');
+                    showStatus('listingStatus', 'Please fill all fields', 'error');
                     return;
                 }
 
                 const totalValueWei = ethers.parseEther(totalValue);
                 const sharePriceWei = ethers.parseEther(sharePrice);
 
-                showStatus('listingStatus', '正在上架艺术品...', 'info');
+                showStatus('listingStatus', 'Listing artwork...', 'info');
 
                 const tx = await contract.listArtwork(name, artist, ipfsHash, totalValueWei, sharePriceWei, totalShares);
-                showStatus('listingStatus', `交易已提交: ${tx.hash}`, 'info');
+                showStatus('listingStatus', `Transaction submitted: ${tx.hash}`, 'info');
 
                 await tx.wait();
-                showStatus('listingStatus', '艺术品上架成功!', 'success');
+                showStatus('listingStatus', 'Artwork listed successfully!', 'success');
 
                 clearArtworkForm();
                 await loadStats();
                 await loadArtworks();
             } catch (error) {
-                console.error('上架失败:', error);
-                showStatus('listingStatus', `上架失败: ${error.message}`, 'error');
+                console.error('Listing failed:', error);
+                showStatus('listingStatus', `Listing failed: ${error.message}`, 'error');
             }
         }
 
@@ -584,17 +607,17 @@
                 const shareAmount = document.getElementById('shareAmount').value;
 
                 if (!artworkId || !shareAmount) {
-                    showStatus('investStatus', '请选择艺术品和输入份额数量', 'error');
+                    showStatus('investStatus', 'Please select artwork and enter share amount', 'error');
                     return;
                 }
 
                 const isRegistered = await contract.isInvestorRegistered(userAddress);
                 if (!isRegistered) {
-                    showStatus('investStatus', '请先注册为投资者', 'error');
+                    showStatus('investStatus', 'Please register as investor first', 'error');
                     return;
                 }
 
-                showStatus('investStatus', '正在进行投资...', 'info');
+                showStatus('investStatus', 'Making investment...', 'info');
 
                 const artworkInfo = await contract.getArtworkInfo(artworkId);
                 const investmentValue = artworkInfo.sharePrice * BigInt(shareAmount);
@@ -603,17 +626,17 @@
                     value: investmentValue
                 });
 
-                showStatus('investStatus', `交易已提交: ${tx.hash}`, 'info');
+                showStatus('investStatus', `Transaction submitted: ${tx.hash}`, 'info');
 
                 await tx.wait();
-                showStatus('investStatus', '投资成功!', 'success');
+                showStatus('investStatus', 'Investment successful!', 'success');
 
                 clearInvestmentForm();
                 await loadStats();
                 await loadArtworks();
             } catch (error) {
-                console.error('投资失败:', error);
-                showStatus('investStatus', `投资失败: ${error.message}`, 'error');
+                console.error('Investment failed:', error);
+                showStatus('investStatus', `Investment failed: ${error.message}`, 'error');
             }
         }
 
@@ -626,24 +649,24 @@
                 document.getElementById('totalArtworks').textContent = totalArtworks.toString();
                 document.getElementById('totalInvestors').textContent = totalInvestors.toString();
 
-                // FHE版本中投资组合数据是加密的，显示为隐私保护状态
+                // In FHE version, portfolio data is encrypted, show as privacy protected
                 if (userAddress) {
                     try {
                         const isRegistered = await contract.isInvestorRegistered(userAddress);
                         if (isRegistered) {
-                            document.getElementById('userPortfolio').textContent = '🔐'; // 显示加密状态
+                            document.getElementById('userPortfolio').textContent = '🔐'; // Show encrypted state
                         } else {
                             document.getElementById('userPortfolio').textContent = '0';
                         }
                     } catch (error) {
-                        console.error('获取用户投资组合失败:', error);
+                        console.error('Failed to get user portfolio:', error);
                         document.getElementById('userPortfolio').textContent = '0';
                     }
                 } else {
                     document.getElementById('userPortfolio').textContent = '0';
                 }
             } catch (error) {
-                console.error('加载统计数据失败:', error);
+                console.error('Failed to load stats:', error);
             }
         }
 
@@ -656,7 +679,7 @@
                 const artworkSelect = document.getElementById('artworkSelect');
 
                 artworksGrid.innerHTML = '';
-                artworkSelect.innerHTML = '<option value="">选择要投资的艺术品...</option>';
+                artworkSelect.innerHTML = '<option value="">Choose artwork to invest in...</option>';
 
                 for (let i = 0; i < totalArtworks; i++) {
                     try {
@@ -667,14 +690,14 @@
 
                         const option = document.createElement('option');
                         option.value = i;
-                        option.textContent = `${artworkInfo.name} - ${ethers.utils.formatEther(artworkInfo.sharePrice)} ETH/股`;
+                        option.textContent = `${artworkInfo.name} - ${ethers.formatEther(artworkInfo.sharePrice)} ETH/share`;
                         artworkSelect.appendChild(option);
                     } catch (error) {
-                        console.error(`加载艺术品 ${i} 失败:`, error);
+                        console.error(`Failed to load artwork ${i}:`, error);
                     }
                 }
             } catch (error) {
-                console.error('加载艺术品失败:', error);
+                console.error('Failed to load artworks:', error);
             }
         }
 
@@ -693,19 +716,19 @@
                     <div class="artwork-stats">
                         <div class="stat">
                             <div class="stat-value">${totalValue} ETH</div>
-                            <div class="stat-label">总价值</div>
+                            <div class="stat-label">Total Value</div>
                         </div>
                         <div class="stat">
                             <div class="stat-value">${info.availableShares.toString()}</div>
-                            <div class="stat-label">可用股数</div>
+                            <div class="stat-label">Available Shares</div>
                         </div>
                         <div class="stat">
                             <div class="stat-value">${info.investorCount.toString()}</div>
-                            <div class="stat-label">投资人数</div>
+                            <div class="stat-label">Investors</div>
                         </div>
                     </div>
                     <button class="invest-btn" onclick="selectArtworkForInvestment(${id})">
-                        投资 (${sharePrice} ETH/股)
+                        Invest (${sharePrice} ETH/share)
                     </button>
                 </div>
             `;
@@ -717,7 +740,7 @@
             document.getElementById('artworkSelect').value = artworkId;
             showTab('invest');
 
-            // 自动计算投资金额
+            // Auto calculate investment amount
             calculateInvestmentAmount();
         }
 
@@ -733,7 +756,7 @@
 
                     document.getElementById('investmentAmount').value = formattedAmount + ' ETH';
                 } catch (error) {
-                    console.error('计算投资金额失败:', error);
+                    console.error('Failed to calculate investment amount:', error);
                 }
             }
         }
@@ -769,19 +792,19 @@
             document.getElementById('investmentAmount').value = '';
         }
 
-        // 事件监听器
+        // Event listeners
         document.getElementById('shareAmount').addEventListener('input', calculateInvestmentAmount);
         document.getElementById('artworkSelect').addEventListener('change', calculateInvestmentAmount);
 
-        // 页面加载时初始化
+        // Initialize on page load
         window.addEventListener('load', async () => {
             if (typeof window.ethereum !== 'undefined') {
-                // 监听账户变化
+                // Listen for account changes
                 window.ethereum.on('accountsChanged', () => {
                     window.location.reload();
                 });
 
-                // 监听网络变化
+                // Listen for network changes
                 window.ethereum.on('chainChanged', () => {
                     window.location.reload();
                 });
@@ -790,13 +813,13 @@
             }
         });
 
-        // 定期更新数据
+        // Periodic data updates
         setInterval(async () => {
             if (contract) {
                 await loadStats();
                 await loadArtworks();
             }
-        }, 30000); // 每30秒更新一次
+        }, 30000); // Update every 30 seconds
     </script>
 </body>
 </html>
