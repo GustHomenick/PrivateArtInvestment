@@ -90,11 +90,11 @@ Traditional art investment platforms expose investor information publicly. Our F
 
 ### Video Demonstration
 
-*The demo video showcases the complete investor journey from registration to receiving returns*
+*PrivateArtInvestment.mp4 showcases the complete investor journey from registration to receiving returns*
 
 ### On-Chain Transactions
 
-Below are real transaction screenshots from the Sepolia testnet:
+Below are real PrivateArtInvestment.png from the Sepolia testnet:
 
 
 ## 🏗️ Technical Architecture
